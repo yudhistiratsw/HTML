@@ -1,0 +1,26 @@
+top #statistik-diri {
+  background-color: #343a40;
+
+  color: white;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+#statistik-diri h2 {
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: white;
+  padding-top: 40px;
+}
+
+#radarChart {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  #radarChart {
+    max-width: 100%;
+  }
+}
