@@ -1,3 +1,9 @@
+<?php
+require 'koneksi.php';
+
+// Ambil data dari tabel services
+$services = mysqli_query($conn, "SELECT * FROM services");
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,10 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jabrikk Portfolio</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-
+</head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="70">
 
@@ -42,9 +48,8 @@
     </div>
   </nav>
 
-
-  <!-- Home Section -->
-  <section id="home" class="text-white text-center d-flex align-items-center">
+  <!-- Home -->
+  <section id="home" class="text-white text-center d-flex align-items-center" style="height: 100vh;">
     <div class="container">
       <h1 class="display-4 font-weight-bold">Welcome to Jabrikk Portfolio</h1>
       <p class="lead mb-4">Passionate about Engine Development & Design</p>
@@ -52,46 +57,27 @@
     </div>
   </section>
 
-  <!-- Biography Fullscreen Section -->
-  <section id="biography" class="driver-hero">
+  <!-- Biography -->
+  <section id="biography" class="driver-hero py-5 bg-dark text-white">
     <div class="container">
       <div class="row align-items-center">
-        <div class="driver-photo-wrapper">
-          <img src="https://i.pinimg.com/736x/86/a3/8c/86a38c059c1a80ea18d28a4381f59bc6.jpg" alt="Driver"
-            class="img-fluid rounded shadow-sm" />
+        <div class="col-md-5">
+          <img src="https://i.pinimg.com/736x/86/a3/8c/86a38c059c1a80ea18d28a4381f59bc6.jpg" class="img-fluid rounded shadow-sm" alt="Driver">
         </div>
-        <div class="col-md-7 text-white">
-          <h2 class="driver-name">Jabrikk</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla laoreet ipsum et elementum. Aliquam
-            vel neque eu magna maximus pulvinar eu at ex. Ut convallis neque at nisl molestie, ac gravida ex lobortis.
-            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin in tincidunt
-            felis. Vestibulum interdum cursus pulvinar. Etiam ac massa semper, tincidunt velit sed, auctor odio. Nullam
-            dapibus augue tincidunt sem tempor, et dictum tellus rhoncus. Sed et molestie elit. Etiam a posuere ipsum.
-            Aenean pharetra egestas porttitor. Nullam ullamcorper id lacus vitae malesuada. In hac habitasse platea
-            dictumst. Vivamus vel consequat odio.
-          </p>
-          <p>
-            Suspendisse non magna non odio rutrum consequat. Aliquam ac pharetra erat. Donec at tellus sed nibh
-            consequat dapibus. Sed tempor lobortis massa, ut viverra felis egestas in. Integer vel nisl porttitor,
-            euismod lectus quis, maximus arcu. Quisque risus diam, accumsan et sem eu, condimentum dictum ex. Maecenas
-            eleifend, ipsum et sagittis hendrerit, mi lectus semper lacus, lacinia interdum arcu turpis quis purus.
-            Etiam scelerisque posuere magna. Donec volutpat maximus suscipit. Praesent in posuere diam. Aliquam in leo
-            porta magna venenatis suscipit accumsan vel massa. Aenean maximus suscipit enim in varius. Nulla molestie
-            augue porttitor, lacinia dui eget, faucibus mi. Suspendisse efficitur gravida fermentum.
-          </p>
+        <div class="col-md-7">
+          <h2>Jabrikk</h2>
+          <p>Deskripsi tentang penulis dan latar belakang.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Drivers -->
-  <section id="drivers" class="py-5 text-white">
+  <!-- Featured Skill -->
+  <section id="drivers" class="py-5 text-white bg-secondary">
     <div class="container">
       <h2 class="mb-4 text-center font-weight-bold">Featured Skill</h2>
       <div class="d-flex overflow-auto pb-3" style="gap: 1rem;">
-
-        <div class="driver-card shadow-sm border-0 flex-shrink-0 bg-secondary text-white">
+      <div class="driver-card shadow-sm border-0 flex-shrink-0 bg-secondary text-white">
           <img src="https://i.pinimg.com/736x/88/fb/dc/88fbdcd65f77414e44a82470fc64d48f.jpg" class="card-img-top"
             alt="2D drafting" />
           <div class="card-body">
@@ -139,7 +125,26 @@
     </div>
   </section>
 
-  <!-- Radar Chart - Statistik Diri -->
+  <!-- Services (dinamis dari database) -->
+  <section id="services" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center font-weight-bold mb-4">Services</h2>
+      <div class="row">
+        <?php while ($row = mysqli_fetch_assoc($services)) : ?>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title"><?= htmlspecialchars($row['title']) ?></h5>
+                <p class="card-text"><?= htmlspecialchars($row['description']) ?></p>
+              </div>
+            </div>
+          </div>
+        <?php endwhile; ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistik Diri -->
   <section id="statistik-diri" class="py-5 bg-dark text-white">
     <div class="container text-center">
       <h2 class="mb-4 font-weight-bold">Statistik Diri</h2>
@@ -148,20 +153,20 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact">
+  <section id="contact" class="py-5">
     <div class="container">
       <h2 class="text-center font-weight-bold mb-4">Contact Me</h2>
-      <form id="contact-form" style="max-width: 600px; margin: auto;">
+      <form id="contact-form" action="contact-process.php" method="POST" style="max-width: 600px; margin: auto;">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Name" required />
+            <input name="name" type="text" class="form-control" placeholder="Name" required />
           </div>
           <div class="form-group col-md-6">
-            <input type="email" class="form-control" placeholder="Email" required />
+            <input name="email" type="email" class="form-control" placeholder="Email" required />
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" rows="5" placeholder="Your message" required></textarea>
+          <textarea name="message" class="form-control" rows="5" placeholder="Your message" required></textarea>
         </div>
         <button class="btn btn-danger btn-block" type="submit">Send Message</button>
       </form>
@@ -169,7 +174,7 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="bg-dark text-white text-center py-3">
     <small>© 2025 Jabrikk Portfolio</small>
   </footer>
 
@@ -181,5 +186,4 @@
   <script src="js/radar-chart.js"></script>
   <script src="js/radar-chart.js"></script>
 </body>
-
 </html>
