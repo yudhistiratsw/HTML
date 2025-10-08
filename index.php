@@ -126,8 +126,6 @@
             <p class="card-text text-light">C, C++, HTML, G-Code,</p>
           </div>
         </div>
-
-
       </div>
     </div>
   </section>
