@@ -43,3 +43,7 @@ fetch('php/get_statistics.php')
     });
   })
   .catch(error => console.error('Fetch error:', error));
+
+
+
+  
