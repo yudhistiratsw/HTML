@@ -36,7 +36,7 @@
           <li class="nav-item"><a class="nav-link" href="#drivers">Featured Skill</a></li>
           <li class="nav-item"><a class="nav-link" href="#statistik-diri">Statistik</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          
+
         </ul>
       </div>
     </div>
@@ -54,6 +54,14 @@
 
   <!-- Biography Fullscreen Section -->
   <section id="biography" class="driver-hero">
+    <script>
+      fetch('php/get_biography.php')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('bio-content').innerHTML = data;
+        });
+    </script>
+
     <div class="container">
       <div class="row align-items-center">
         <div class="driver-photo-wrapper">
@@ -62,24 +70,7 @@
         </div>
         <div class="col-md-7 text-white">
           <h2 class="driver-name">Jabrikk</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla laoreet ipsum et elementum. Aliquam
-            vel neque eu magna maximus pulvinar eu at ex. Ut convallis neque at nisl molestie, ac gravida ex lobortis.
-            Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin in tincidunt
-            felis. Vestibulum interdum cursus pulvinar. Etiam ac massa semper, tincidunt velit sed, auctor odio. Nullam
-            dapibus augue tincidunt sem tempor, et dictum tellus rhoncus. Sed et molestie elit. Etiam a posuere ipsum.
-            Aenean pharetra egestas porttitor. Nullam ullamcorper id lacus vitae malesuada. In hac habitasse platea
-            dictumst. Vivamus vel consequat odio.
-          </p>
-          <p>
-            Suspendisse non magna non odio rutrum consequat. Aliquam ac pharetra erat. Donec at tellus sed nibh
-            consequat dapibus. Sed tempor lobortis massa, ut viverra felis egestas in. Integer vel nisl porttitor,
-            euismod lectus quis, maximus arcu. Quisque risus diam, accumsan et sem eu, condimentum dictum ex. Maecenas
-            eleifend, ipsum et sagittis hendrerit, mi lectus semper lacus, lacinia interdum arcu turpis quis purus.
-            Etiam scelerisque posuere magna. Donec volutpat maximus suscipit. Praesent in posuere diam. Aliquam in leo
-            porta magna venenatis suscipit accumsan vel massa. Aenean maximus suscipit enim in varius. Nulla molestie
-            augue porttitor, lacinia dui eget, faucibus mi. Suspendisse efficitur gravida fermentum.
-          </p>
+          <p id="bio-content">Loading biography...</p>
         </div>
       </div>
     </div>
@@ -142,28 +133,29 @@
   </section>
 
   <!-- Radar Chart - Statistik Diri -->
-  <section id="statistik-diri" class="py-5 bg-dark text-white">
+  <section id="statistik-diri" class="bg-dark text-white d-flex justify-content-center align-items-center">
     <div class="container text-center">
       <h2 class="mb-4 font-weight-bold">Statistik Diri</h2>
-      <canvas id="radarChart" width="400" height="400"></canvas>
+      <canvas id="radarChart" width="600" height="600"></canvas>
     </div>
   </section>
 
+</section>
   <!-- Contact -->
   <section id="contact">
     <div class="container">
       <h2 class="text-center font-weight-bold mb-4">Contact Me</h2>
-      <form id="contact-form" style="max-width: 600px; margin: auto;">
+      <form id="contact-form" method="POST" action="php/contact.php" style="max-width: 600px; margin: auto;">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Name" required />
+            <input type="text" class="form-control" name="name" placeholder="Name" required />
           </div>
           <div class="form-group col-md-6">
-            <input type="email" class="form-control" placeholder="Email" required />
+            <input type="email" class="form-control" name="email" placeholder="Email" required />
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" rows="5" placeholder="Your message" required></textarea>
+<textarea class="form-control" name="message" rows="5" placeholder="Your message" required></textarea>
         </div>
         <button class="btn btn-danger btn-block" type="submit">Send Message</button>
       </form>
@@ -179,9 +171,9 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="css/radar-chart.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/radar-chart.js"></script>
-  <script src="js/radar-chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/radar-chart.js"></script>
+
 </body>
 
 </html>

@@ -2,7 +2,6 @@ body {
   scroll-behavior: smooth;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding-top: 70px;
   background-color: #343a40;
 }
 
@@ -43,10 +42,12 @@ section {
 }
 
 /* Biography */
+
 #biography .driver-photo-wrapper {
+   padding-top: -100px;
   max-width: 320px;
   margin: 0 auto;
-  border-radius: 15px;
+  border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }

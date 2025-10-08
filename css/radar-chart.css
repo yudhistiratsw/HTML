@@ -1,9 +1,35 @@
-top #statistik-diri {
-  background-color: #343a40;
+#statistik-diri {
+  background-image: url('https://i.pinimg.com/1200x/1d/f3/3c/1df33c5a8846246acf770ba2b4cad86d.jpg');
+  background-size: cover;        /* biar gambarnya memenuhi area */
+  background-position: center;   /* posisikan di tengah */
+  background-repeat: no-repeat;  /* supaya gak ulang */
+  position: relative;            /* supaya overlay bisa diposisikan */
 
   color: white;
   padding-top: 60px;
   padding-bottom: 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+/* Overlay supaya teks dan chart tetap terbaca */
+#statistik-diri::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* overlay hitam transparan */
+  z-index: 0;
+}
+
+/* Supaya konten di atas overlay */
+#statistik-diri > * {
+  position: relative;
+  z-index: 1;
 }
 
 #statistik-diri h2 {
@@ -14,9 +40,14 @@ top #statistik-diri {
 }
 
 #radarChart {
-  max-width: 500px;
+  max-width: 600px;
+  max-height: 600px;
   width: 100%;
+  height: auto;
+  display: block;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 576px) {
