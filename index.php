@@ -136,7 +136,6 @@
       <h2 class="mb-4 font-weight-bold">Statistik Diri</h2>
       <canvas id="radarChart" width="600" height="600"></canvas>
       
-</section>
     </div>
   </section>
 
@@ -172,8 +171,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="css/radar-chart.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/radar-chart.js"></script>
-  <script src="js/realtime-chart.js"></script>
+
+ <script defer src="js/chart.js"></script>
   
 
 </body>

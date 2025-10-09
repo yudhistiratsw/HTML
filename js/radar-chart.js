@@ -1,49 +1,34 @@
-fetch('php/get_statistics.php')
-  .then(response => response.json())
-  .then(data => {
-    console.log("Data from server:", data);  // lihat output di console
 
-    if (!Array.isArray(data)) {
-      throw new Error("Data bukan array!");
-    }
+ctx = document.getElementById('radarChart').getContext('2d');
 
-    const labels = data.map(item => item.label);
-    const values = data.map(item => item.value);
-
-    const ctx = document.getElementById("radarChart").getContext("2d");
-    new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: "Skill Levels",
-          data: values,
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
-          pointBackgroundColor: "rgba(255,99,132,1)"
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
+new Chart(ctx, {
+  type: 'radar',
+  data: {
+      labels: ['CAD', 'CAM', 'Electrical', 'Programming', 'Design'],
+      datasets: [{
+          label: 'Skill Level',
+          data: [90, 90, 85, 70, 75],
+          fill: true,
+          backgroundColor: 'rgba(255, 0, 79, 0.2)',
+          borderColor: '#ff004f',
+          pointBackgroundColor: '#ff004f',
+          borderWidth: 2
+      }]
+  },
+  options: {
+      scales: {
           r: {
-            angleLines: { color: '#444' },
-            grid: { color: '#666' },
-            pointLabels: { color: '#fff', font: { size: 14 } },
-            suggestedMin: 0,
-            suggestedMax: 100
+              angleLines: { color: '#444' },
+              grid: { color: '#666' },
+              pointLabels: { color: '#fff', font: { size: 14 } },
+              suggestedMin: 0,
+              suggestedMax: 100
           }
-        },
-        plugins: {
+      },
+      plugins: {
           legend: {
-            labels: { color: '#fff' }
+              labels: { color: '#fff' }
           }
-        }
       }
-    });
-  })
-  .catch(error => console.error('Fetch error:', error));
-
-
-
-  
+  }
+});
